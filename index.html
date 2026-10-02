@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn Toán học THPT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f9ff; color: #1e2b3c; line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        nav {
+            background: #fff; box-shadow: 0 4px 20px rgba(0,20,50,.08);
+            padding: 1rem 2rem; position: sticky; top: 0; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem;
+        }
+        .logo { display:flex; align-items:center; gap:.5rem; font-size:1.5rem; font-weight:700; color:#1e4a7a; }
+        .logo i { color:#2d7ee7; font-size:1.8rem; }
+        .nav-links { display:flex; gap:2rem; flex-wrap:wrap; }
+        .nav-links a { text-decoration:none; color:#2c3e50; font-weight:500; transition:color .2s; font-size:1rem; }
+        .nav-links a:hover { color:#2d7ee7; }
+        .hero {
+            background:linear-gradient(135deg,#1e4a7a 0%,#2d7ee7 100%);
+            color:#fff; padding:3rem 2rem; text-align:center;
+            border-radius:0 0 30px 30px; margin-bottom:2.5rem;
+        }
+        .hero h1 { font-size:2.8rem; font-weight:700; margin-bottom:1rem; letter-spacing:-.5px; }
+        .hero p { font-size:1.2rem; max-width:700px; margin:0 auto; opacity:.9; }
+        .hero .badge {
+            display:inline-block; background:rgba(255,255,255,.15);
+            backdrop-filter:blur(5px); padding:.5rem 1.2rem; border-radius:40px;
+            margin-top:1.5rem; font-weight:500; border:1px solid rgba(255,255,255,.3);
+        }
+        .container { max-width:1280px; margin:0 auto; padding:0 1.5rem 4rem; }
+        .section-title {
+            font-size:2rem; font-weight:700; margin-bottom:1.5rem; color:#0d2b4b;
+            display:flex; align-items:center; gap:.75rem;
+            border-left:6px solid #2d7ee7; padding-left:1rem;
+        }
+        .section-title i { color:#2d7ee7; font-size:1.8rem; }
+        .topic-grid {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:1.8rem; margin-bottom:3.5rem;
+        }
+        .topic-card {
+            background:#fff; border-radius:24px; padding:1.8rem 1.6rem;
+            box-shadow:0 10px 25px -5px rgba(0,0,0,.05),0 8px 10px -6px rgba(0,0,0,.02);
+            transition:all .25s ease; border:1px solid #e9f0f9;
+        }
+        .topic-card:hover {
+            transform:translateY(-6px);
+            box-shadow:0 25px 35px -12px rgba(45,126,231,.2);
+            border-color:#b8d6ff;
+        }
+        .topic-icon {
+            background:#e7f0ff; width:56px; height:56px; border-radius:18px;
+            display:flex; align-items:center; justify-content:center;
+            margin-bottom:1.3rem; font-size:1.8rem; color:#2d7ee7;
+        }
+        .topic-card h3 { font-size:1.4rem; font-weight:700; margin-bottom:.75rem; color:#0d2b4b; }
+        .topic-card p { color:#4a5f73; font-size:.95rem; margin-bottom:1.2rem; }
+        .topic-card ul { list-style:none; }
+        .topic-card ul li {
+            margin-bottom:.5rem; display:flex; align-items:center; gap:.5rem;
+            font-size:.95rem; color:#2c3e50;
+        }
+        .topic-card ul li i { color:#2d7ee7; font-size:.8rem; }
+        .interactive-section {
+            background:#fff; border-radius:28px; padding:2rem;
+            box-shadow:0 20px 35px -10px rgba(0,0,0,.08);
+            margin-bottom:3rem; border:1px solid #e9f0f9;
+        }
+        .interactive-header { display:flex; align-items:center; gap:.75rem; margin-bottom:1.5rem; }
+        .interactive-header i { font-size:2rem; color:#2d7ee7; }
+        .interactive-header h2 { font-size:1.8rem; font-weight:700; color:#0d2b4b; }
+        .quiz-container { background:#f9fcff; border-radius:20px; padding:1.8rem; border:1px solid #d4e5ff; }
+        .question { font-size:1.2rem; font-weight:600; margin-bottom:1.5rem; color:#0d2b4b; }
+        .options { display:flex; flex-direction:column; gap:.9rem; margin-bottom:1.5rem; }
+        .option {
+            display:flex; align-items:center; gap:1rem; background:#fff;
+            padding:.9rem 1.4rem; border-radius:14px; border:1.5px solid #dce8f5;
+            cursor:pointer; transition:all .15s;
+        }
+        .option:hover { background:#e7f0ff; border-color:#2d7ee7; }
+        .option input[type="radio"] { accent-color:#2d7ee7; width:18px; height:18px; cursor:pointer; }
+        .option label { font-weight:500; cursor:pointer; flex:1; font-size:1rem; }
+        .btn-check {
+            background:#2d7ee7; color:#fff; border:none; padding:.9rem 2rem;
+            border-radius:50px; font-weight:600; font-size:1rem; cursor:pointer;
+            transition:background .2s,transform .1s; display:inline-flex;
+            align-items:center; gap:.6rem; margin-right:1rem;
+            box-shadow:0 6px 14px rgba(45,126,231,.3);
+        }
+        .btn-check:hover { background:#1a5fc9; }
+        .btn-check:active { transform:scale(.97); }
+        .btn-reset {
+            background:transparent; color:#2d7ee7; border:1.5px solid #2d7ee7;
+            padding:.9rem 1.8rem; border-radius:50px; font-weight:600;
+            cursor:pointer; transition:all .2s;
+        }
+        .btn-reset:hover { background:#e7f0ff; }
+        .feedback {
+            margin-top:1.5rem; font-weight:600; padding:1rem 1.5rem;
+            border-radius:16px; display:none;
+        }
+        .feedback.correct { background:#e0f7e9; color:#0b6b3b; border-left:6px solid #2ecc71; display:block; }
+        .feedback.incorrect { background:#ffeaea; color:#b33a3a; border-left:6px solid #e74c3c; display:block; }
+        footer {
+            text-align:center; padding:2rem; background:#fff;
+            border-top:1px solid #d4e5ff; color:#4a5f73; font-size:.95rem;
+        }
+        footer i { color:#2d7ee7; }
+        @media (max-width:700px) {
+            .hero h1 { font-size:2rem; }
+            .nav-links { gap:1rem; }
+            .section-title { font-size:1.6rem; }
+            .interactive-section,.quiz-container { padding:1.3rem; }
+        }
+        @media (max-width:480px) {
+            nav { flex-direction:column; align-items:flex-start; }
+            .hero { padding:2rem 1rem; }
+            .hero h1 { font-size:1.7rem; }
+            .btn-check,.btn-reset { width:100%; justify-content:center; margin-bottom:.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><i class="fas fa-calculator"></i><span>MathTHPT</span></div>
+        <div class="nav-links">
+            <a href="#topics">Chủ đề</a>
+            <a href="#practice">Luyện tập</a>
+            <a href="#resources">Tài nguyên</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Hướng dẫn Toán học THPT</h1>
+        <p>Hệ thống kiến thức trọng tâm, bài tập minh họa và phương pháp giải nhanh giúp em tự tin chinh phục môn Toán.</p>
+        <div class="badge"><i class="fas fa-graduation-cap"></i> Lớp 10 · 11 · 12</div>
+    </header>
+
+    <main class="container">
+        <section id="topics">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Chủ đề trọng tâm</h2>
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-superscript"></i></div>
+                    <h3>Đại số & Giải tích</h3>
+                    <p>Hàm số, phương trình, bất phương trình, logarit, nguyên hàm – tích phân.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Khảo sát hàm số</li>
+                        <li><i class="fas fa-check-circle"></i> Mũ & Logarit</li>
+                        <li><i class="fas fa-check-circle"></i> Tích phân & ứng dụng</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-shapes"></i></div>
+                    <h3>Hình học không gian</h3>
+                    <p>Thể tích, quan hệ vuông góc, khoảng cách, mặt cầu – mặt trụ – mặt nón.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Hình chóp & lăng trụ</li>
+                        <li><i class="fas fa-check-circle"></i> Góc & khoảng cách</li>
+                        <li><i class="fas fa-check-circle"></i> Mặt tròn xoay</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-wave-square"></i></div>
+                    <h3>Lượng giác</h3>
+                    <p>Công thức lượng giác, phương trình lượng giác, hệ thức trong tam giác.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Công thức biến đổi</li>
+                        <li><i class="fas fa-check-circle"></i> Phương trình cơ bản</li>
+                        <li><i class="fas fa-check-circle"></i> Ứng dụng thực tế</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Xác suất – Thống kê</h3>
+                    <p>Hoán vị, chỉnh hợp, tổ hợp, xác suất cổ điển, thống kê mô tả.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Đếm & tổ hợp</li>
+                        <li><i class="fas fa-check-circle"></i> Xác suất có điều kiện</li>
+                        <li><i class="fas fa-check-circle"></i> Số đặc trưng mẫu</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <div class="interactive-section">
+                <div class="interactive-header">
+                    <i class="fas fa-pencil-alt"></i><h2>Luyện tập nhanh</h2>
+                </div>
+                <div class="quiz-container">
+                    <div class="question" id="questionText"></div>
+                    <div class="options" id="optionsContainer"></div>
+                    <div>
+                        <button class="btn-check" id="checkBtn"><i class="fas fa-check"></i> Kiểm tra</button>
+                        <button class="btn-reset" id="resetBtn"><i class="fas fa-redo-alt"></i> Làm lại</button>
+                    </div>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources">
+            <h2 class="section-title"><i class="fas fa-folder-open"></i> Tài nguyên học tập</h2>
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-file-pdf"></i></div>
+                    <h3>Công thức cần nhớ</h3>
+                    <p>Tổng hợp công thức Đại số – Hình học – Lượng giác đầy đủ cho 3 khối.</p>
+                    <ul>
+                        <li><i class="fas fa-download"></i> Bản PDF tóm tắt</li>
+                        <li><i class="fas fa-download"></i> Sơ đồ tư duy</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-video"></i></div>
+                    <h3>Bài giảng video</h3>
+                    <p>Video hướng dẫn giải chi tiết các dạng bài thường gặp trong đề thi.</p>
+                    <ul>
+                        <li><i class="fas fa-play-circle"></i> Hàm số bậc 3</li>
+                        <li><i class="fas fa-play-circle"></i> Tích phân từng phần</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-tasks"></i></div>
+                    <h3>Đề thi thử</h3>
+                    <p>Đề thi thử THPT Quốc gia có đáp án và lời giải chi tiết.</p>
+                    <ul>
+                        <li><i class="fas fa-file-alt"></i> Đề số 01 – 2025</li>
+                        <li><i class="fas fa-file-alt"></i> Đề số 02 – 2025</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><i class="fas fa-heart"></i> Toán THPT – Học chủ động, thi tự tin.</p>
+        <p style="margin-top:.5rem;font-size:.85rem;">© 2025 MathTHPT. Trang web hướng dẫn học tập phi lợi nhuận.</p>
+    </footer>
+
+    <script>
+        const questionData = {
+            question: "Đạo hàm của hàm số y = x³ - 3x² + 2 là?",
+            options: [
+                { text: "3x² - 6x", isCorrect: true },
+                { text: "x² - 6x", isCorrect: false },
+                { text: "3x² - 6x + 2", isCorrect: false },
+                { text: "3x² + 6x", isCorrect: false }
+            ]
+        };
+
+        function renderQuiz() {
+            const questionEl = document.getElementById('questionText');
+            const optionsContainer = document.getElementById('optionsContainer');
+            const feedback = document.getElementById('feedback');
+
+            questionEl.textContent = questionData.question;
+            feedback.className = 'feedback';
+            feedback.style.display = 'none';
+            feedback.textContent = '';
+
+            optionsContainer.innerHTML = questionData.options.map((opt, index) => `
+                <div class="option">
+                    <input type="radio" name="quizOption" value="${index}" id="opt${index}">
+                    <label for="opt${index}">${opt.text}</label>
+                </div>
+            `).join('');
+        }
+
+        function checkAnswer() {
+            const selected = document.querySelector('input[name="quizOption"]:checked');
+            const feedback = document.getElementById('feedback');
+
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '⚠️ Vui lòng chọn một đáp án trước khi kiểm tra!';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            const selectedIndex = parseInt(selected.value);
+            const isCorrect = questionData.options[selectedIndex].isCorrect;
+
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✅ Chính xác! Đạo hàm của x³ - 3x² + 2 là 3x² - 6x.';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '❌ Chưa đúng. Gợi ý: Đạo hàm của xⁿ là n·xⁿ⁻¹, hằng số đạo hàm bằng 0.';
+            }
+            feedback.style.display = 'block';
+        }
+
+        function resetQuiz() {
+            document.querySelectorAll('input[name="quizOption"]').forEach(radio => radio.checked = false);
+            const feedback = document.getElementById('feedback');
+            feedback.className = 'feedback';
+            feedback.style.display = 'none';
+            feedback.textContent = '';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            document.getElementById('checkBtn').addEventListener('click', checkAnswer);
+            document.getElementById('resetBtn').addEventListener('click', resetQuiz);
+        });
+    </script>
+</body>
+</html>
